@@ -1,0 +1,196 @@
+{% extends 'company/base.html' %}
+
+{% block content %}
+
+<h4 class="lead" style="margin-top: 10px;">Welcome {{user|title}}, Glad to have you with us.</h4>
+<hr><br>
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          About
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">The aim of this platform is to find out among the numbers of participate companies which is the most dislike in nigeria</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          How To Participate
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">So to get started you will need to vote for the company you dislike among the different group, the ones that get the most dislike before a selected like frame will automatically move to the next round.</div>
+      </div>
+    </div>
+  </div>
+  <br>
+<h1 class="lead" id="heading">Round One</h1>
+
+<p id="group">Group 1</p>
+
+<div class="row row-col-2">
+    {%for company in one %}
+    <div class="col">
+        <div class="card mb-3" style="max-width: 540px;" id="box">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{company.image.url}}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ company.name }}</h5>
+                  <p class="card-text">{{ company.description }}</p>
+                  <strong>{{ company.vote.all.count }}</strong>
+                  <form action="{% url 'vote' company.pk %}" method="POST">
+                    {% csrf_token %}
+                    {% if user.is_authenticated%}
+                      <button class="btn btn-primary btn-sm" type="submit" name="vote" value="{{company.id}}">Vote</button>
+                    {% endif %}
+                    </form>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+            <hr>
+        </div>
+        <h1 id="vs">VS</h1>
+        {%endfor%}
+        <br>
+    </div>
+</div>
+<hr>
+<p id="group">Group 2</p>
+{%for company in two %}
+<div class="card mb-3" style="max-width: 540px;" id="box">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{company.image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ company.name }}</h5>
+          <p class="card-text">{{ company.description }}</p>
+          <strong>{{ company.vote.all.count }}</strong>
+          <form action="{% url 'vote' company.pk %}" method="POST">
+          {% if user.is_authenticated%}
+            <button class="btn btn-primary btn-sm" type="submit" name="vote" value="{{company.id}}">Vote</button>
+          {% endif %}
+          </form>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+</div>
+<h1 id="vs">VS</h1>
+{%endfor%}
+<br>
+<hr>
+<p id="group">Group 3</p>
+{%for company in three %}
+<div class="card mb-3" style="max-width: 540px;" id="box">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{company.image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ company.name }}</h5>
+          <p class="card-text">{{ company.description }}</p>
+          <strong>{{ company.vote.all.count }}</strong>
+          <form action="{% url 'vote' company.pk %}" method="POST">
+            {% if user.is_authenticated%}
+              <button class="btn btn-primary btn-sm" type="submit" name="vote" value="{{company.id}}">Vote</button>
+            {% endif %}
+            </form>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+</div>
+<h1 id="vs">VS</h1>
+{%endfor%}
+<br>
+<hr>
+<p id="group">Group 4</p>
+{%for company in four %}
+<div class="card mb-3" style="max-width: 540px;" id="box">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{company.image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ company.name }}</h5>
+          <p class="card-text">{{ company.description }}</p>
+          <strong>{{ company.vote.all.count }}</strong>
+          <form action="{% url 'vote' company.pk %}" method="POST">
+            {% if user.is_authenticated%}
+              <button class="btn btn-primary btn-sm" type="submit" name="vote" value="{{company.id}}">Vote</button>
+            {% endif %}
+            </form>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+</div>
+<h1 id="vs">VS</h1>
+{%endfor%}
+<br>
+<hr>
+<p id="group">Group 5</p>
+{%for company in five %}
+<div class="card mb-3" style="max-width: 540px;" id="box">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{company.image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ company.name }}</h5>
+          <p class="card-text">{{ company.description }}</p>
+          <strong>{{ company.vote.all.count }}</strong>
+          <form action="{% url 'vote' company.pk %}" method="POST">
+            {% if user.is_authenticated%}
+              <button class="btn btn-primary btn-sm" type="submit" name="vote" value="{{company.id}}">Vote</button>
+            {% endif %}
+            </form>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+</div>
+<h1 id="vs">VS</h1>
+{%endfor%}
+<br>
+<hr>
+<p id="group">Group 6</p>
+{%for company in six %}
+<div class="card mb-3" style="max-width: 540px;" id="box">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{company.image.url}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ company.name }}</h5>
+          <p class="card-text">{{ company.description }}</p>
+          <strong>{{ company.vote.all.count }}</strong>
+          <form action="{% url 'vote' company.pk %}" method="POST">
+            {% if user.is_authenticated%}
+              <button class="btn btn-primary btn-sm" type="submit" name="vote" value="{{company.id}}">Vote</button>
+            {% endif %}
+            </form>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+</div>
+<h1 id="vs">VS</h1>
+{%endfor%}
+<br>
+<hr>
+{% endblock %}
